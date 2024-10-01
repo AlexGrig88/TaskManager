@@ -1,4 +1,6 @@
-﻿namespace TaskManager.Api.Models
+﻿using TaskManager.Api.Models.Enums;
+
+namespace TaskManager.Api.Models
 {
     public class Project : CommonObject
     {
@@ -7,7 +9,7 @@
         public List<Desk> AllDesks { get; set; } = new List<Desk> { };
         public ProjectStatus status { get; set; }
 
-        public int AdminId { get; set; }
-        public ProjectAdmin Admin { get; set; }
+        public int ProjectAdminId { get; set; }
+        public ProjectAdmin ProjectAdmin { get; set; }
     }
 }
