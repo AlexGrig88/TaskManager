@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TaskManager.Api.Models;
-using TaskManager.Api.Models.Enums;
+using TaskManager.Common.Models.Enums;
 
 namespace TaskManager.Api.Data
 {

@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using TaskManager.Api.Models.Enums;
+using TaskManager.Common.Models;
+using TaskManager.Common.Models.Enums;
 
 namespace TaskManager.Api.Models
 {
@@ -33,7 +34,7 @@ namespace TaskManager.Api.Models
 
         public User() { }
         public User(string fName, string lName, string email, string pass,
-                     UserStatus status = UserStatus.User, string phone = null)
+                     UserStatus status = UserStatus.User, string phone = null, byte[] photo = null)
         {
             FirstName = fName;
             LastName = lName;
@@ -41,7 +42,39 @@ namespace TaskManager.Api.Models
             Password = pass;
             Phone = phone;
             Status = status;
+            Photo = photo;
             RegistrationDate = DateTime.UtcNow;
+        }
+
+        public User(UserDto userDto) : this(userDto.FirstName, userDto.LastName, userDto.Email,
+                                            userDto.Password, userDto.Status, userDto.Phone, userDto.Photo)
+        { }
+
+        public UserDto ToDto()
+        {
+            return new UserDto() { 
+                Id = this.Id,
+                FirstName = this.FirstName,
+                LastName = this.LastName,
+                Email = this.Email,
+                Password = this.Password,
+                Phone = this.Phone,
+                Status = this.Status,
+                Photo = this.Photo, 
+                RegistrationDate = this.RegistrationDate
+            };
+        }
+
+        public void FromUserDto(UserDto userDto)
+        {
+            this.FirstName = userDto.FirstName;
+            this.LastName = userDto.LastName;
+            this.Email = userDto.Email;
+            this.Password = userDto.Password;
+            this.Phone = userDto.Phone;
+            this.Status = userDto.Status;
+            this.Photo = userDto.Photo;
+            this.RegistrationDate = userDto.RegistrationDate;
         }
 
     }

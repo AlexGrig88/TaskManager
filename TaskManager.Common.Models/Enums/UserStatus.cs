@@ -1,4 +1,4 @@
-﻿namespace TaskManager.Api.Models.Enums
+﻿namespace TaskManager.Common.Models.Enums
 {
     public enum UserStatus
     {
