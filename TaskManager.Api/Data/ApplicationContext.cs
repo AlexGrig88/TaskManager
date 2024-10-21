@@ -15,10 +15,20 @@ namespace TaskManager.Api.Data
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
         {
             Database.EnsureCreated();
-            if (!Users.Any(u => u.Status == UserStatus.Admin)) {
-                Users.Add(new User("Pavel", "Popov", "pavpop111@gmail.com", "123qwerty", UserStatus.Admin));
+            if (!Users?.Any(u => u.Status == UserStatus.Admin) ?? false) {
+                var admin = new User("Maxim", "Petrov", "petrow@gmail.com", "qwerty", UserStatus.Admin);
+                Users.Add(admin);
                 SaveChanges();
             }
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+/*            modelBuilder.Entity<Desk>()
+                 .HasOne(d => d.Admin)
+                 .WithMany(u => u.Desks)
+                 .HasForeignKey(d => d.AdminId);*/
+
         }
     }
 }
