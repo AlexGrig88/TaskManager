@@ -48,7 +48,9 @@ namespace TaskManager.Api.Models
 
         public User(UserDto userDto) : this(userDto.FirstName, userDto.LastName, userDto.Email,
                                             userDto.Password, userDto.Status, userDto.Phone, userDto.Photo)
-        { }
+        { 
+            RegistrationDate = DateTime.UtcNow;
+        }
 
         public UserDto ToDto()
         {
@@ -63,18 +65,6 @@ namespace TaskManager.Api.Models
                 Photo = this.Photo, 
                 RegistrationDate = this.RegistrationDate
             };
-        }
-
-        public void FromUserDto(UserDto userDto)
-        {
-            this.FirstName = userDto.FirstName;
-            this.LastName = userDto.LastName;
-            this.Email = userDto.Email;
-            this.Password = userDto.Password;
-            this.Phone = userDto.Phone;
-            this.Status = userDto.Status;
-            this.Photo = userDto.Photo;
-            this.RegistrationDate = userDto.RegistrationDate;
         }
 
     }
